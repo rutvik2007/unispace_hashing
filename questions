@@ -1,0 +1,5 @@
+what language?
+
+what parts should I start with first?
+
+I see that cassandra is mentioned in the paper - and there is a way to define a custom partitioner for cassandra - should we be looking into that?

@@ -1,0 +1,18 @@
+the dimnesions are configurable - just a way to distribute the keys?
+
+
+mostly questions about how functions work - seems like the part of the paper that was left unimplemented
+
+about the functions:
+How do the `weights` and `overlay_` work?
+can they work concurrently with regular hashing?
+can object stored with a certain formula be retreived with another formula that captures the objects' properties?
+
+formulas are essentially a specification of the "type" of the object --
+they are used to narrow down the query space
+
+There may be an ideal number of dimnesions based on the details of the data in the system
+
+I should start implementing the paper and write out verifiable test cases for my implementation - should probably ask what language I should be using - might make sense to brush up on some nodejs
+
+I need to show proportional enthusiasm so that the prof is more motivated to help -- deadlines are STRICT -- schedule class stuff, life stuff with this in mind -- this is an equal priority
