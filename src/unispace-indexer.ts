@@ -12,9 +12,8 @@ class UnispaceIndexer implements Indexer {
         this.catchAll = Array<number>(this.nRegions).map((v, i, arr) => i)
     }
 
-    // get the node responsible for an
+    // get the nodes responsible for objects satisfying a query
     getNodes(query: StrObj) {
-        // first count the number of wildcards
         let coordinate_vector = Array<number|Array<number>>(this.nDims).fill(0);
         const keys = Object.keys(query).sort()
         for (const key in keys) {
