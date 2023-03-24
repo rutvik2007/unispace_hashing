@@ -1,26 +1,31 @@
 class UnispaceIndexer implements Indexer {
-    hash_fn: (str: string) => number;
+    hashFn: (str: string) => number;
     nDims: number;
     nRegions: number;
+    catchAll: Array<number>;
 
-    constructor(hash_fn: (str: string) => number, nDims, nRegions, nNodes: number) {
+    constructor(hashFn: (str: string) => number, nDims, nRegions, nNodes: number) {
         // TODO: Validation of constructor params
-        this.hash_fn = hash_fn;
+        this.hashFn = hashFn;
         this.nDims = nDims;
         this.nRegions = nRegions;
+        this.catchAll = Array<number>(this.nRegions).map((v, i, arr) => i)
     }
 
     // get the node responsible for an
     getNodes(query: StrObj) {
         // first count the number of wildcards
         let coordinate_vector = Array<number|Array<number>>(this.nDims).fill(0);
-        for (const key in query) {
+        const keys = Object.keys(query).sort()
+        for (const key in keys) {
+            let index = this.hashFn(key) % this.nDims;
             if (query[key] !== "*") {
-                let index = this.hash_fn(key) % this.nDims;
-                let value = this.hash_fn(query[key]) % this.nRegions;
+                let value = this.hashFn(query[key]) % this.nRegions;
                 coordinate_vector[index] = value;
+            } else {
+                // we have a catchall
+                coordinate_vector[index] = this.catchAll
             }
-            
         }        
         // console.log(coordinate_vector);
         // more logic here to get the list of ids that correspond to the query
